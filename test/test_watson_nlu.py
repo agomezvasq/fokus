@@ -10,8 +10,8 @@ class TestWatsonNLU(unittest.TestCase):
                'headquartered in Armonk, New York, United States, ' \
                'with operations in over 170 countries.'
 
-        response = json.loads(watson_nlu.analyze(text))
+        watson_object = watson_nlu.WatsonObject(text)
 
-        n_keywords = len(response["keywords"])
+        n_keywords = len(watson_object.keywords)
 
         self.assertEqual(n_keywords, 8)

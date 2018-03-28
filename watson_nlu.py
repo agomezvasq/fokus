@@ -8,9 +8,17 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
   version='2018-03-16')
 
 
-def analyze(text):
-    response = natural_language_understanding.analyze(
-      text=text,
-      features=Features(
-        keywords=KeywordsOptions()))
-    return json.dumps(response, indent=2)
+class WatsonObject:
+
+    def __init__(self, text):
+        self.text = text
+        self.object = WatsonObject.analyze(text)
+        self.keywords = {keyword['text']: keyword['relevance'] for keyword in self.object['keywords']}
+
+    @staticmethod
+    def analyze(text):
+        response = natural_language_understanding.analyze(
+          text=text,
+          features=Features(
+            keywords=KeywordsOptions()))
+        return json.loads(json.dumps(response))
