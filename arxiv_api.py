@@ -8,7 +8,7 @@ class ArxivAPIQueryObject:
         self.query = query
 
 
-def next_abstract(query, max_results):
+def next_article(query, max_results):
     query_encoded = urllib.request.quote(query, safe='~()*!.\'')
     url = 'http://export.arxiv.org/api/query?search_query=' + query_encoded + '&start=0&max_results=' + str(max_results)
     data = urllib.request.urlopen(url).read()
@@ -23,14 +23,17 @@ def next_abstract(query, max_results):
 
 
 def create_query(keywords_yes, keywords_no=[]):
-    query = '(' + '+OR+'.join(['all:' + keyword for keyword in keywords_yes]) + ')'
+    query = '(' + '+OR+'.join(['all:' + '"' + keyword.replace(' ', '+') + '"' for keyword in keywords_yes]) + ')'
     if keywords_no:
-        query += '+ANDNOT+' + '(' + '+OR+'.join(['all:' + keyword for keyword in keywords_no]) + ')'
+        query += '+ANDNOT+' + '(' + '+OR+'.join(
+            ['all:' + '"' + keyword.replace(' ', '+') + '"' for keyword in keywords_no]
+        ) + ')'
     return query
 
 
 def articles(keywords_yes, keywords_no, max_results, ids=True, titles=True, abstracts=True):
     query = create_query(keywords_yes, keywords_no)
+    print(query)
     url = 'http://export.arxiv.org/api/query?search_query=' + query + '&start=0&max_results=' + str(max_results)
     data = urllib.request.urlopen(url).read()
     o = xmltodict.parse(data)
