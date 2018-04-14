@@ -1,6 +1,4 @@
-import arxiv_api
-import google_scholar_api
-import watson_nlu
+from fokus.backend import watson_nlu, arxiv_api, google_scholar_api
 
 if __name__ == '__main__':
     keywords = {}
