@@ -1,0 +1,10 @@
+html, body {
+  height: 100%;
+}
+
+.bottom-align {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
