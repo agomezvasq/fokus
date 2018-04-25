@@ -7,5 +7,5 @@ from django.template import loader, RequestContext
 
 def index(request):
     template = loader.get_template('fokus/index.html')
-    context = RequestContext(request)
+    context = { 'title': 'Title!' }
     return HttpResponse(template.render(context))
