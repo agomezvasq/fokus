@@ -1,5 +1,5 @@
 import unittest
-from fokus.backend import watson_nlu
+from app.backend import watson_nlu
 
 
 class TestWatsonNLU(unittest.TestCase):

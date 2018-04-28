@@ -1,4 +1,4 @@
-from fokus.backend import watson_nlu, arxiv_api, google_scholar_api
+from app.backend import watson_nlu, arxiv_api, google_scholar_api
 
 if __name__ == '__main__':
     keywords = {}

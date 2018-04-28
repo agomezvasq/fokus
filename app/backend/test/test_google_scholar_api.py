@@ -1,5 +1,5 @@
 import unittest
-from fokus.backend import google_scholar_api
+from app.backend import google_scholar_api
 
 
 class TestGoogleScholarAPI(unittest.TestCase):

@@ -1,5 +1,5 @@
 import unittest
-from fokus.backend import arxiv_api
+from app.backend import arxiv_api
 
 
 class TestArxivAPI(unittest.TestCase):
