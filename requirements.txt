@@ -3,3 +3,6 @@ gunicorn==19.7.1
 whitenoise==3.3.1
 ibmcloudenv
 livereload
+watson_developer_cloud
+xmltodict
+pdfminer.six

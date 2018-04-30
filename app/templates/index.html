@@ -22,9 +22,9 @@
 
       <div class="modal-body col-md-6 mx-auto">
         <!-- Your second column here -->
-        <div class="list-group">
+        <div id="list-group" class="list-group">
           <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
+            <div class="d-flex w-100 justify-content-between mb-6">
               <div>
                 <h5 class="mb-1">List group item heading</h5>
                 <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
@@ -418,13 +418,14 @@
         </div>
 
         <div class="modal-body fixed-bottom bg-white border-top">
-          <form>
+          {% csrf_token %}
+          <form id="form">
             <div class="form-row col-md-5 mx-auto mb-2">
               <div class="col">
-                <input class="form-control" type="text" placeholder="">
+                <input id="input" class="form-control" type="text" placeholder="">
               </div>
               <div class="col-auto">
-                <button type="button" class="btn btn-primary">
+                <button type="submit" id="submit" class="btn btn-primary" form="form">
                   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="margin-left: 2px;" width='14' height='13' viewBox="0 2 8 12">
                     <path fill-rule="evenodd" fill="white" d="M0 14l6-6-6-6v12z"></path>
                   </svg>
@@ -509,13 +510,15 @@
         </div>
       </div>
 
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="{% static "js/jquery-slim.min.js" %}"><\/script>')</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="{% static "js/jquery-3.3.1.min.js" %}"><\/script>')</script>
     <script src="{% static "js/popper.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+    <script src="{% static "js/csrf.js" %}"></script>
+    <script src="{% static "js/script.js" %}"></script>
   </body>
 </html>

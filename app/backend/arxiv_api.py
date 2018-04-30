@@ -31,13 +31,13 @@ def create_query(keywords_yes, keywords_no=[]):
     return query
 
 
-def articles(keywords_yes, keywords_no, max_results, ids=True, titles=True, abstracts=True):
+def articles(keywords_yes, keywords_no, max_results, ids=True, titles=True, abstracts=True, links=True):
     query = create_query(keywords_yes, keywords_no)
     print(query)
     url = 'http://export.arxiv.org/api/query?search_query=' + query + '&start=0&max_results=' + str(max_results)
     data = urllib.request.urlopen(url).read()
     o = xmltodict.parse(data)
-    entries = o["feed"]["entry"]
+    entries = o['feed']['entry']
     results = []
     for entry in entries:
         dct = {}
@@ -47,5 +47,10 @@ def articles(keywords_yes, keywords_no, max_results, ids=True, titles=True, abst
             dct['title'] = entry['title']
         if abstracts:
             dct['abstract'] = entry['summary']
+        if links:
+            for link in entry['link']:
+                if '@title' in link and link['@title'] == 'pdf':
+                    dct['link'] = link['@href']
+                    break
         results.append(dct)
     return results
